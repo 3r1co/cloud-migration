@@ -1,0 +1,12 @@
+site_name: 'ISEN Cloud Migration Training'
+nav:
+    - Introduction: README.md
+    - Infrastructure as a Service: iaas.md
+    - Deploy through a CI/CD Pipeline: cicd_artifacts.md
+    - The first managed service, Aurora: iaas_w_aurora.md
+    - Port your application to Docker: docker.md
+    - Port your application to Lambda: lambda.md
+theme:
+  name: 'material'
+markdown_extensions:
+  - codehilite
