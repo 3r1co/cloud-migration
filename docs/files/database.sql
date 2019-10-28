@@ -7,4 +7,4 @@ CREATE TABLE `employee` (
   `city` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-GRANT ALL PRIVILEGES ON *.* TO 'isenuser'@'*' IDENTIFIED BY 'isen1234';
+GRANT ALL PRIVILEGES ON *.* TO 'isenuser'@'%' IDENTIFIED BY 'isen1234';

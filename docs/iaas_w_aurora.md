@@ -8,13 +8,11 @@ In a real-world use case you would for sure migrate your existing data, but let'
 
 ## Step-by-Step instructions
 
-1. Go to the AWS Console and deploy the follow CloudFormation Stack:
+1. Update the [cf-all.yaml](./files/cf-all.yaml) CloudFormation and add the cluster resource from  here: [cf-aurora.yaml](./files/cf-aurora.yaml).
 
-    - [cf-aurora.yaml](../files/cf-aurora.yaml) 
+1. Remove the Database resource and the according DatabaseSecurityGroup in the [cf-all.yaml](./files/cf-all.yaml), you don't need it anymore.
 
-2. Update your cf-application.yaml stack from the previous exercise to connect to the Aurora instance.
-
-3. Delete the CloudFormation stack for your previous database.
+2. Commit and push your infrastructure source code changes to Github.
 
 Congratulations, you have one EC2 instance less to manage! Also you get the following advantages:
 

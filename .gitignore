@@ -1,8 +1,9 @@
 src/crud-app
-.tar.gz
-.zip
+*.tar.gz
+*.zip
 credentials.csv
 .gitignore
 *.pem
 *.ppk
 .gitignore
+src/crud-app.tar.gz

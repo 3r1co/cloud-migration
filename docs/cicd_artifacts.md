@@ -7,11 +7,23 @@ At the end of this lab, every commit to the master branch of your repository sho
 
 ## Step-by-Step instructions
 
-1. Create a Repository on github.com in which you will store  
+1. Fork [this](https://github.com/3r1co/cloud-migration) repository. It contains   
 
-    - your application source code
-    - your infrastructure source code
+    - the application source code (in src/)
+    - the infrastructure source code (in docs/files/)
 
-1. Build artifact
-1. Upload to S3
-1. Deploy with CloudFormation API
+1. Create a programmatic IAM user in AWS.  
+    -  Give EC2FullAccess and CloudFormationFullAccess managed policy to this user.
+    -  Generate an Access Key ID and Secret Access Key bundle.
+1. Add the following secrets to your previously forked Github repository:
+
+    - AWS_ACCESS_KEY_ID : from the previously created bundle.
+    - AWS_SECRET_ACCESS_KEY : from the previously created bundle.
+    - DBName : choose freely
+    - DBPassword : choose freely
+    - DBRootPassword : choose freely
+    - DBUser : choose freely
+    - KeyName : the name of the keypair you created in the previous exercise
+
+1. Create an S3 bucket that will be used to store your artifacts. Uncheck the box asking you to forbid making the bucket public. Add a bucket policy allowing the previously created user to upload artifacts and change an objects ACL (Access Control List).
+
