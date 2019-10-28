@@ -63,7 +63,7 @@ Resources:
     Type: "AWS::EC2::Instance"
     CreationPolicy:
       ResourceSignal:
-        Timeout: PT15M
+        Timeout: PT5M
     DependsOn: Database
     Metadata:
       AWS::CloudFormation::Init:
@@ -162,7 +162,7 @@ Resources:
     Type: "AWS::EC2::Instance"
     CreationPolicy:
       ResourceSignal:
-        Timeout: PT15M
+        Timeout: PT5M
     Metadata:
       AWS::CloudFormation::Init:
         configSets:
