@@ -22,7 +22,9 @@ jobs:
         mkdir dist
         tar czvf dist/crud-app.tar.gz crud-app form/*
       working-directory: src
+      name: Build artifact
     - uses: actions/upload-artifact@master
+      name: Store artifact
       with:
         name: crud-app
         path: src/dist
