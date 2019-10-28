@@ -161,8 +161,8 @@ Resources:
            #!/bin/bash -xe
            # ${UpdateVariable}
            yum update -y aws-cfn-bootstrap
-           /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource Application --configsets application_install --region ${AWS::Region}
-           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource Application --region ${AWS::Region}
+           /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource ApplicationLC --configsets application_install --region ${AWS::Region}
+           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource ApplicationLC --region ${AWS::Region}
 
   ApplicationSecurityGroup:
     Type: AWS::EC2::SecurityGroup
