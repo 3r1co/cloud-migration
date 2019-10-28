@@ -325,17 +325,34 @@ In this lab, we will not build a very advanced CI/CD system as you have a dedica
 <h2 id="step-by-step-instructions">Step-by-Step instructions</h2>
 <ol>
 <li>
-<p>Create a Repository on github.com in which you will store  </p>
+<p>Fork <a href="https://github.com/3r1co/cloud-migration">this</a> repository. It contains   </p>
 <ul>
-<li>your application source code</li>
-<li>your infrastructure source code</li>
+<li>the application source code (in src/)</li>
+<li>the infrastructure source code (in docs/files/)</li>
 </ul>
 </li>
 <li>
-<p>Build artifact</p>
+<p>Create a programmatic IAM user in AWS.  </p>
+<ul>
+<li>Give EC2FullAccess and CloudFormationFullAccess managed policy to this user.</li>
+<li>Generate an Access Key ID and Secret Access Key bundle.</li>
+</ul>
 </li>
-<li>Upload to S3</li>
-<li>Deploy with CloudFormation API</li>
+<li>
+<p>Add the following secrets to your previously forked Github repository:</p>
+<ul>
+<li>AWS_ACCESS_KEY_ID : from the previously created bundle.</li>
+<li>AWS_SECRET_ACCESS_KEY : from the previously created bundle.</li>
+<li>DBName : choose freely</li>
+<li>DBPassword : choose freely</li>
+<li>DBRootPassword : choose freely</li>
+<li>DBUser : choose freely</li>
+<li>KeyName : the name of the keypair you created in the previous exercise</li>
+</ul>
+</li>
+<li>
+<p>Create an S3 bucket that will be used to store your artifacts. Uncheck the box asking you to forbid making the bucket public. Add a bucket policy allowing the previously created user to upload artifacts and change an objects ACL (Access Control List).</p>
+</li>
 </ol>
                 
                   

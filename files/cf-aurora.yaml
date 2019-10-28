@@ -1,0 +1,43 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: Aurora serverless cluster
+
+Parameters:
+  DBName:
+    Type: String
+  EngineVersion:
+    Type: String
+    Default: '5.6'
+  DBUser:
+    Type: String
+    Default: root
+  DBRootPassword:
+    Type: String
+    NoEcho: true
+
+Resources:
+  Cluster:
+    Type: AWS::RDS::DBCluster
+    Properties:
+      Engine: aurora
+      EngineMode: serverless
+      EngineVersion: "5.6"
+      DatabaseName: !Ref DBName
+      MasterUsername: !Ref DBUser
+      MasterUserPassword: !Ref DBRootPassword
+      DBClusterIdentifier: !Ref AWS::StackName
+      BackupRetentionPeriod: 35
+      DeletionProtection: true
+      VpcSecurityGroupIds:
+        - !Ref ApplicationSecurityGroup
+
+Outputs:
+  Host:
+    Value: !GetAtt Cluster.Endpoint.Address
+    Export:
+      Name: !Sub '${AWS::StackName}Host'
+  Name:
+    Value: !Ref DatabaseName
+    Export:
+      Name: !Sub '${AWS::StackName}Name'
