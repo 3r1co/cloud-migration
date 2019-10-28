@@ -110,7 +110,7 @@ Resources:
                 [cfn-auto-reloader-hook]
                 triggers=post.update
                 path=Resources.Application.Metadata.AWS::CloudFormation::Init
-                action=/opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource Application --configsets application_install --url https://stackbuilder.amazonaws.com
+                action=/opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource ApplicationLC --configsets application_install --url https://stackbuilder.amazonaws.com
               group: root
               mode: '000400'
               owner: root
