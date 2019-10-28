@@ -9,5 +9,5 @@ This tutorial guides you through the following steps:
 - Manually deploy an application on EC2 Instances [here](./iaas.md)
 - Automatically deploy an application on EC2 Instances [here](./cicd_artifacts.md)
 - Make use of a managed database service [here](./iaas_w_aurora.md)
-- Containerize an application and you a container service [here](./docker.md)
+- Containerize an application and use a container service [here](./docker.md)
 - Use a managed runtime environment and make the application serverless [here](./lambda.md)
