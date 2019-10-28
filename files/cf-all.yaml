@@ -59,8 +59,31 @@ Mappings:
 
 Resources: 
 
+  ApplicationASG: 
+    Type: AWS::AutoScaling::AutoScalingGroup
+    UpdatePolicy:
+      AutoScalingRollingUpdate:
+        PauseTime: PT5M
+        WaitOnResourceSignals: true
+    Properties: 
+      AvailabilityZones: 
+        Fn::GetAZs: ""
+      LaunchConfigurationName: !Ref Application
+      MinSize: "1"
+      MaxSize: "4"
+      MetricsCollection: 
+        - 
+          Granularity: "1Minute"
+          Metrics: 
+            - "GroupMinSize"
+            - "GroupMaxSize"
+      Tags:
+        - Key: Name
+          Value: application
+          PropagateAtLaunch: true  
+
   Application: 
-    Type: "AWS::EC2::Instance"
+    Type: AWS::AutoScaling::LaunchConfiguration
     CreationPolicy:
       ResourceSignal:
         Timeout: PT5M
@@ -129,9 +152,6 @@ Resources:
     Properties:
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", HVM64]
       InstanceType: !Ref InstanceTypeParameter
-      Tags:
-      - Key: Name
-        Value: application
       KeyName:
         Ref: KeyName
       SecurityGroups:
@@ -265,8 +285,3 @@ Resources:
         FromPort: 22
         IpProtocol: tcp
         ToPort: 22
-
-Outputs:
-  ApplicationPublicIP:
-    Description: EC2 public IP
-    Value: !GetAtt Application.PublicIp
