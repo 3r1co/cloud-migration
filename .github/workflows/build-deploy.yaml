@@ -32,7 +32,9 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: aws s3 cp src/dist/crud-app.tar.gz s3://3r1co-github-artifacts --region us-east-1
+      run: |
+        aws s3 cp src/dist/crud-app.tar.gz s3://3r1co-github-artifacts --region us-east-1
+        aws s3api put-object-acl --bucket 3r1co-github-artifacts --key crud-app.tar.gz --acl public-read
     - name: Upload CloudFormation
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
