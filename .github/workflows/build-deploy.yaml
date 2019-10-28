@@ -20,7 +20,7 @@ jobs:
         go get -d -v
         GOOS=linux go build -o crud-app
         mkdir dist
-        tar czvf dist/crud-app.tar.gz crud-app from/*
+        tar czvf dist/crud-app.tar.gz crud-app form/*
       working-directory: src
     - uses: actions/upload-artifact@master
       with:
