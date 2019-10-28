@@ -23,8 +23,15 @@ jobs:
         tar czvf dist/crud-app.tar.gz crud-app form/*
       working-directory: src
       name: Build artifact
-    - uses: actions/upload-artifact@master
-      name: Store artifact
+#    - uses: actions/upload-artifact@master
+#      name: Store artifact
+#      with:
+#        name: crud-app
+#        path: src/dist
+    - name: Upload to S3
+      uses: actions/aws/cli@master
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       with:
-        name: crud-app
-        path: src/dist
+        args: s3 cp src/dist/crud-app.tar.gz s3://3r1co-github-artifacts

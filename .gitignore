@@ -2,3 +2,5 @@ src/crud-app
 src/crud-app.tar.gz
 src/crud-app.zip
 src/function.zip
+credentials.csv
+.gitignore
