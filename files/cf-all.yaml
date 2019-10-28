@@ -68,7 +68,7 @@ Resources:
     Properties: 
       AvailabilityZones: 
         Fn::GetAZs: ""
-      LaunchConfigurationName: !Ref Application
+      LaunchConfigurationName: !Ref ApplicationLC
       MinSize: "1"
       MaxSize: "4"
       MetricsCollection: 
@@ -82,7 +82,7 @@ Resources:
           Value: application
           PropagateAtLaunch: true  
 
-  Application: 
+  ApplicationLC: 
     Type: AWS::AutoScaling::LaunchConfiguration
     CreationPolicy:
       ResourceSignal:
