@@ -63,6 +63,7 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     UpdatePolicy:
       AutoScalingRollingUpdate:
+        MinInstancesInService: 1
         PauseTime: PT5M
         WaitOnResourceSignals: true
     Properties: 
@@ -162,7 +163,7 @@ Resources:
            # ${UpdateVariable}
            yum update -y aws-cfn-bootstrap
            /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource ApplicationLC --configsets application_install --region ${AWS::Region}
-           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource ApplicationLC --region ${AWS::Region}
+           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource ApplicationASG --region ${AWS::Region}
 
   ApplicationSecurityGroup:
     Type: AWS::EC2::SecurityGroup
