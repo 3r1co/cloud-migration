@@ -59,6 +59,36 @@ Mappings:
 
 Resources: 
 
+  LoadBalancer:
+    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Properties:
+      Scheme: "http"
+      SecurityGroups:
+      - !Ref LoadBalancerSecurityGroup
+  HttpListener:
+    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Properties:
+      DefaultActions:
+      - TargetGroupArn: !Ref DefaultTargetGroup
+        Type: forward
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+
+  DefaultTargetGroup:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      HealthCheckIntervalSeconds: 15
+      HealthCheckPath: '/'
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 10
+      HealthyThresholdCount: 2
+      UnhealthyThresholdCount: 2
+      Matcher:
+        HttpCode: '200-299'
+      Port: 80
+      Protocol: HTTP
+
   ApplicationASG: 
     Type: AWS::AutoScaling::AutoScalingGroup
     UpdatePolicy:
@@ -72,6 +102,8 @@ Resources:
       LaunchConfigurationName: !Ref ApplicationLC
       MinSize: "1"
       MaxSize: "4"
+      TargetGroupARNs:
+        - !Ref DefaultTargetGroup
       MetricsCollection: 
         - 
           Granularity: "1Minute"
@@ -164,20 +196,6 @@ Resources:
            yum update -y aws-cfn-bootstrap
            /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource ApplicationLC --configsets application_install --region ${AWS::Region}
            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource ApplicationASG --region ${AWS::Region}
-
-  ApplicationSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: "Enable SSH and HTTP access"
-      SecurityGroupIngress:
-      - CidrIp: 0.0.0.0/0
-        FromPort: 8080
-        IpProtocol: tcp
-        ToPort: 8080
-      - CidrIp: 0.0.0.0/0 #Attention!! Don't do this in real life!!
-        FromPort: 22
-        IpProtocol: tcp
-        ToPort: 22
 
   Database: 
     Type: "AWS::EC2::Instance"
@@ -272,6 +290,36 @@ Resources:
           yum update -y aws-cfn-bootstrap
           /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource Database --configsets database_install --region ${AWS::Region}
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource Database --region ${AWS::Region}
+
+#############################
+#                           #      
+#       Security Groups     #
+#                           #
+#############################
+
+  LoadBalancerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Enable SSH and HTTP access"
+      SecurityGroupIngress:
+      - CidrIp: 0.0.0.0/0
+        FromPort: 80
+        IpProtocol: tcp
+        ToPort: 80
+
+  ApplicationSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Enable SSH and HTTP access"
+      SecurityGroupIngress:
+      - SourceSecurityGroupName: !Ref LoadBalancerSecurityGroup
+        FromPort: 8080
+        IpProtocol: tcp
+        ToPort: 8080
+      - CidrIp: 0.0.0.0/0 #Attention!! Don't do this in real life!!
+        FromPort: 22
+        IpProtocol: tcp
+        ToPort: 22
 
   DatabaseSecurityGroup:
     Type: AWS::EC2::SecurityGroup
