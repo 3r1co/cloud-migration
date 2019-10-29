@@ -46,6 +46,6 @@ jobs:
             DBRootPassword="${{ secrets.DBRootPassword }}"
             DBUser="${{ secrets.DBUser }}"
             KeyName="${{ secrets.KeyName }}"
-            Subnets="$(aws ec2 describe-subnets --output json --region us-east-1 | jq '[.Subnets[].SubnetId | tostring] | join (",")' | sed 's/,/\\,/g')"
+            Subnets="$(aws ec2 describe-subnets --output json --region us-east-1 | jq '[.Subnets[].SubnetId | tostring] | join (",")'"
             InstanceTypeParameter="t2.micro"
             --region us-east-1
