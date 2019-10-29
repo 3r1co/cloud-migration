@@ -47,6 +47,9 @@ Parameters:
     MinLength: '1'
     NoEcho: 'true'
     Type: String
+  Subnets:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: The Subnets in which the the LoadBalancer will deployed in (select at least two)
   UpdateVariable:
     Type: String
     Description: Enter a random string. This will ensure that the application instance will always be updated.
@@ -62,9 +65,10 @@ Resources:
   LoadBalancer:
     Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
     Properties:
-      Scheme: "http"
+      Scheme: "internet-facing"
+      Subnets: !Ref Subnets
       SecurityGroups:
-      - !Ref LoadBalancerSecurityGroup
+      - !GetAtt LoadBalancerSecurityGroup.GroupId
   HttpListener:
     Type: 'AWS::ElasticLoadBalancingV2::Listener'
     Properties:
@@ -84,9 +88,10 @@ Resources:
       HealthCheckTimeoutSeconds: 10
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
+      VpcId: !GetAtt LoadBalancerSecurityGroup.VpcId
       Matcher:
         HttpCode: '200-299'
-      Port: 80
+      Port: 8080
       Protocol: HTTP
 
   ApplicationASG: 
