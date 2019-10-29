@@ -48,6 +48,6 @@ jobs:
             DBRootPassword="${{ secrets.DBRootPassword }}"
             DBUser="${{ secrets.DBUser }}"
             KeyName="${{ secrets.KeyName }}"
-            Subnets=$SUBNETS
+            Subnets="$SUBNETS"
             InstanceTypeParameter="t2.micro"
             --region us-east-1
