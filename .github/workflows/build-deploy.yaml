@@ -39,7 +39,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: SUBNETS=$(aws ec2 describe-subnets --output json --region us-east-1 | jq '[.Subnets[].SubnetId | tostring] | join (",")' | sed 's/,/\\,/g' | sed 's/\"//g' ) && aws cloudformation deploy --template-file docs/files/cf-all.yaml --stack-name isen --parameter-overrides
+      run: SUBNETS=$(aws ec2 describe-subnets --output json --region us-east-1 | jq '[.Subnets[].SubnetId | tostring] | join (",")' | sed 's/\"//g' ) && aws cloudformation deploy --template-file docs/files/cf-all.yaml --stack-name isen --parameter-overrides
             UpdateVariable="$(date)"
             DBName="${{ secrets.DBName }}"
             DBPassword="${{ secrets.DBPassword }}"
