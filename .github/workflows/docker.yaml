@@ -12,6 +12,12 @@ jobs:
  
     steps:
     - uses: actions/checkout@v1
-    - run: |
+    - name: Build Docker image
+      run: |
         docker build -t crud-app .
       working-directory: ./src
+    - name: Tag and Push image to ECR 
+      run: |
+        $(aws ecr get-login --no-include-email --region us-east-1)
+        docker tag crud-app:latest 868894423383.dkr.ecr.us-east-1.amazonaws.com/crud-app:$GITHUB_SHA
+        docker push 868894423383.dkr.ecr.us-east-1.amazonaws.com/crud-app:$GITHUB_SHA
