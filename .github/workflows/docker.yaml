@@ -1,0 +1,17 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - docker         # Push events on master branch
+
+jobs:
+
+  build:
+ 
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - uses: actions/checkout@v1
+    - run: |
+        docker build -t crud-app .
+      working-directory: ./src
