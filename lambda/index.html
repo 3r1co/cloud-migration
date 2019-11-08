@@ -238,9 +238,38 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Port your application to Lambda
+      </label>
+    
     <a href="./" title="Port your application to Lambda" class="md-nav__link md-nav__link--active">
       Port your application to Lambda
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#follow-up-exercise" class="md-nav__link">
+    Follow-up exercise
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -262,6 +291,22 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#follow-up-exercise" class="md-nav__link">
+    Follow-up exercise
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -274,6 +319,17 @@
                 
                 
                 <h1 id="all-in-with-serverless">All in with Serverless</h1>
+<p>The ultimate goal of application refactoring is making it Serverless.
+The application in the <code>/src</code> directory is already compatible with AWS Lambda.
+You now have to find out how to: </p>
+<ul>
+<li>Compile a Golang application for AWS Lambda</li>
+<li>Package the application to be compatible with AWS Lambda (ZIP Format)</li>
+<li>Deploy the Lambda package</li>
+</ul>
+<p>Additionally, create an Application Load Balancer to routes traffic to your Lambda function.</p>
+<h2 id="follow-up-exercise">Follow-up exercise</h2>
+<p>Create a Github Workflow that automatically builds, packages and deploys your Lambda Function.</p>
                 
                   
                 

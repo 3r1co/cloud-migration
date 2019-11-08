@@ -226,9 +226,38 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Port your application to Docker
+      </label>
+    
     <a href="./" title="Port your application to Docker" class="md-nav__link md-nav__link--active">
       Port your application to Docker
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#follow-up-exercise" class="md-nav__link">
+    Follow-up exercise
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -262,6 +291,22 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#follow-up-exercise" class="md-nav__link">
+    Follow-up exercise
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -276,8 +321,17 @@
                 <h1 id="containerisation">Containerisation</h1>
 <p>In this tutorial, we would like to make our application easily transferable between different cloud providers.<br />
 As you have learned throughout the course, containerisation is a good way to achieve that goal.<br />
-In this tutorial, we will add a Dockerfile to our repository and push it to docker.io. This enables us to have our artifacts stored in a "neutral" place, which can be used by various cloud providers.<br />
+In this tutorial, we will add a Dockerfile to our repository and push it to AWS ECR. 
 Once this is done, we will address the deployment of container through ECS, the Container service of AWS.</p>
+<p>There is already a Dockerfile in the <code>/src</code> directory of this repository. You can use it to build the Docker image on your local workstation.</p>
+<p>For this tutorial, you'll have to use the AWS Documentation and find out the following things:</p>
+<ul>
+<li>How to log in with the AWS CLI to AWS ECR</li>
+<li>How to push a Docker image to AWS ECR</li>
+<li>How to deploy a Docker image to AWS ECS</li>
+</ul>
+<h2 id="follow-up-exercise">Follow-up exercise</h2>
+<p>Check the pipeline in the <code>.github/workflows/docker.yaml</code>. Make the pipeline work so that a new push to your Github repository results in a new Image Build + Push + Deployment.</p>
                 
                   
                 
