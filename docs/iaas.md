@@ -24,7 +24,7 @@ In this first exercise, we are building an application consisting out of two com
 
 2. Install MySQL on this EC2 instance:
 
-        yum install -y mysql mysql-server
+        yum install -y mysql mariadb-server
 
 3. Run the following statement to create your database schema:
 
