@@ -52,7 +52,6 @@ In this first exercise, we are building an application consisting out of two com
 
         wget https://3r1co-github-artifacts.s3.amazonaws.com/crud-app.tar.gz
         tar xzvf crud-app.tar.gz
-        cd crud-app
         ./crud-app --dbHost <private-ip-of-your-database-instance> --dbName isen --dbUser isenuser --dbPass isen1234
 
 1. In your browser go to http://<public-ip-of-your-ec2-instance>:8080 .  
