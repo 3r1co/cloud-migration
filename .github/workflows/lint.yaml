@@ -1,0 +1,19 @@
+name: Build and Deploy Docker image
+
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - master
+
+jobs:
+
+  build:
+ 
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - uses: actions/checkout@v1
+    - uses: minchao/cfn-nag-action@master
+        with:
+          args: '--input-path docs/files/cf-all.yaml'
