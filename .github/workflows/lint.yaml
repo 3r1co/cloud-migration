@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: minchao/cfn-nag-action@master
-        with:
-          args: '--input-path docs/files/cf-all.yaml'
+      with:
+        args: '--input-path docs/files/cf-all.yaml'
